@@ -1,0 +1,19 @@
+.counter-container {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Montserrat';
+}
+
+.counter-container .contenedor-numero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+}
+
+.contenedor-numero p {
+    color: rgb(255, 255, 255);
+    font-size: 3em;
+    opacity: 0.75;
+    margin: 0;
+}

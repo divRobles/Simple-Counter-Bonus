@@ -1,24 +1,18 @@
 import React from "react";
+import Counter from "./Counter.jsx";
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
+import { useState, useEffect } from "react";
+import { func } from "prop-types";
+import Clock from "../component/Clock.jsx";
 
-//create your first component
+//create your first componentrSec
 const Home = () => {
 	return (
-		<div>
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="home-container">
+			<Counter />
+			<Clock></Clock>
 		</div>
 	);
 };
