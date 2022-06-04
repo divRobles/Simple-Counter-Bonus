@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../styles/Counter.css";
 import "../../styles/CuentaAtras.css";
 
-const CuentaAtras = ({ funcion }) => {
+const CuentaAtras = ({ funcion, placehold }) => {
 	const [numero, setNumero] = useState("");
 
 	const input = document.querySelector(".input-cuenta-atras");
@@ -19,7 +19,6 @@ const CuentaAtras = ({ funcion }) => {
 	};
 
 	const enviarCuentaAtras = (e) => {
-		console.log("hola", numero);
 		if (numero && !isNaN(numero)) {
 			if (numero.length > 6) {
 				alert("El número debe tener 6 dígitos como máximo");
@@ -44,7 +43,7 @@ const CuentaAtras = ({ funcion }) => {
 							onKeyDown={numeroCuentaAtras}
 							type="text"
 							className="input-cuenta-atras"
-							placeholder="Numero para cuenta atrás"
+							placeholder={placehold}
 						/>
 					</div>
 					<div className="col-2 p-0 ">
