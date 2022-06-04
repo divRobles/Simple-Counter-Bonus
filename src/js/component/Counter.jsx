@@ -26,12 +26,14 @@ const Counter = ({}) => {
 				prevcounter !== 0 ? prevcounter - 1 : (prevcounter = 0)
 			);
 		},
-		temporizador: function temporizar() {
-			console.log("tempFuncion", temp);
-			// console.log("numeroFuncion", counterUni);
-			setTemp((pretemp) => pretemp + 1);
-		},
 	};
+	function temporizar() {
+		// console.log("tempFuncion", temp);
+		// console.log("numeroFuncion", counterUni);
+		// useEffect(() => {
+		// setTemp((pretemp) => (pretemp !== 0 ? pretemp + 1 : pretemp - 1));
+		// }, []);
+	}
 
 	const startCount = () => {
 		if ((!intervalIdUni && !direccion) || (direccion && counterUni === 0)) {
@@ -74,16 +76,19 @@ const Counter = ({}) => {
 	};
 
 	const enviarAlerta = (numero) => {
+		alert("oko");
 		if (intervalTemp) {
 			console.log("okoko");
 			clearInterval(intervalTemp);
 			setIntervalTemp(numero);
 			setTemp(numero);
+			console.log(temp);
 		} else {
 			setTemp(numero);
 			console.log(temp);
 			const newIntervalITemp = setInterval(() => {
-				funciones.temporizador();
+				// funciones.temporizador();
+				temporizar();
 			}, 1000);
 			setIntervalTemp(newIntervalITemp);
 		}
@@ -91,7 +96,7 @@ const Counter = ({}) => {
 
 	const enviarCuentaAtras = (numero) => {
 		intervalIdUni && clearInterval(intervalIdUni);
-		intervalIdUni && setIntervalIdUni(numero);
+		// intervalIdUni && setIntervalIdUni(numero);
 		setcounterUni(numero);
 		paAtras();
 	};
@@ -99,17 +104,18 @@ const Counter = ({}) => {
 	const mostarNumero = () => {
 		let digitos = counterUni.toString().length;
 		if (digitos === 1) {
-			return `00000${counterUni}`;
-		} else if (digitos === 2) {
-			return `0000${counterUni}`;
-		} else if (digitos === 3) {
-			return `000${counterUni}`;
-		} else if (digitos === 4) {
-			return `00${counterUni}`;
-		} else if (digitos === 5) {
-			return `0${counterUni}`;
-		} else if (digitos === 6) {
-			return `${counterUni}`;
+			// return `00000${counterUni}`;
+			return `00000${temp}`;
+			// } else if (digitos === 2) {
+			// 	return `0000${counterUni}`;
+			// } else if (digitos === 3) {
+			// 	return `000${counterUni}`;
+			// } else if (digitos === 4) {
+			// 	return `00${counterUni}`;
+			// } else if (digitos === 5) {
+			// 	return `0${counterUni}`;
+			// } else if (digitos === 6) {
+			// 	return `${counterUni}`;
 		}
 	};
 
