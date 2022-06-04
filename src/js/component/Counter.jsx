@@ -28,11 +28,12 @@ const Counter = ({}) => {
 		},
 	};
 	function temporizar() {
-		// console.log("tempFuncion", temp);
-		// console.log("numeroFuncion", counterUni);
-		// useEffect(() => {
-		// setTemp((pretemp) => (pretemp !== 0 ? pretemp + 1 : pretemp - 1));
-		// }, []);
+		console.log("numeroFuncion", counterUni);
+		console.log(typeof temp);
+		// setTemp((pre) => (parseInt(pre) === 3 ? (pre = "10") : (pre = "100")));
+		// setTemp((pre) => (pre === 3 ? (pre = 10) : (pre = 100)));
+		setTemp((pre) => (pre == counterUni ? (pre = 10) : (pre = "fin")));
+		temp === "fin" && console.log("oook");
 	}
 
 	const startCount = () => {
@@ -78,19 +79,16 @@ const Counter = ({}) => {
 	const enviarAlerta = (numero) => {
 		alert("oko");
 		if (intervalTemp) {
-			console.log("okoko");
 			clearInterval(intervalTemp);
-			setIntervalTemp(numero);
 			setTemp(numero);
 			console.log(temp);
 		} else {
 			setTemp(numero);
-			console.log(temp);
 			const newIntervalITemp = setInterval(() => {
-				// funciones.temporizador();
 				temporizar();
 			}, 1000);
 			setIntervalTemp(newIntervalITemp);
+			temporizar();
 		}
 	};
 
@@ -104,18 +102,17 @@ const Counter = ({}) => {
 	const mostarNumero = () => {
 		let digitos = counterUni.toString().length;
 		if (digitos === 1) {
-			// return `00000${counterUni}`;
-			return `00000${temp}`;
-			// } else if (digitos === 2) {
-			// 	return `0000${counterUni}`;
-			// } else if (digitos === 3) {
-			// 	return `000${counterUni}`;
-			// } else if (digitos === 4) {
-			// 	return `00${counterUni}`;
-			// } else if (digitos === 5) {
-			// 	return `0${counterUni}`;
-			// } else if (digitos === 6) {
-			// 	return `${counterUni}`;
+			return `00000${counterUni}`;
+		} else if (digitos === 2) {
+			return `0000${counterUni}`;
+		} else if (digitos === 3) {
+			return `000${counterUni}`;
+		} else if (digitos === 4) {
+			return `00${counterUni}`;
+		} else if (digitos === 5) {
+			return `0${counterUni}`;
+		} else if (digitos === 6) {
+			return `${counterUni}`;
 		}
 	};
 
@@ -156,6 +153,8 @@ const Counter = ({}) => {
 			<div className="counter-container">
 				<div className="contenedor-numero">
 					<p>{mostarNumero()}</p>
+					<br></br>
+					<p>{temp}</p>
 				</div>
 			</div>
 		</>
