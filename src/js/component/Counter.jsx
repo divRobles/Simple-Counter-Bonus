@@ -12,7 +12,7 @@ const Counter = ({}) => {
 	const [direccion, setDireccion] = useState(false);
 	const [temp, setTemp] = useState(0);
 	const [intervalTemp, setIntervalTemp] = useState(0);
-
+	const [diferenciaTemp, setDiferenciaTemp] = useState(0);
 	const funciones = {
 		contarDesde0: function setCero(counter) {
 			counter((prevcounter) =>
@@ -26,15 +26,12 @@ const Counter = ({}) => {
 				prevcounter !== 0 ? prevcounter - 1 : (prevcounter = 0)
 			);
 		},
+		temporizador: function temporizar() {
+			// setTemp((pre) => (pre = pre - counterUni));
+			// temp === counterUni && console.log("ahhhh");
+			// temp !== counterUni && console.log("nooo");
+		},
 	};
-	function temporizar() {
-		console.log("numeroFuncion", counterUni);
-		console.log(typeof temp);
-		// setTemp((pre) => (parseInt(pre) === 3 ? (pre = "10") : (pre = "100")));
-		// setTemp((pre) => (pre === 3 ? (pre = 10) : (pre = 100)));
-		setTemp((pre) => (pre == counterUni ? (pre = 10) : (pre = "fin")));
-		temp === "fin" && console.log("oook");
-	}
 
 	const startCount = () => {
 		if ((!intervalIdUni && !direccion) || (direccion && counterUni === 0)) {
@@ -60,12 +57,10 @@ const Counter = ({}) => {
 	};
 
 	const reset = () => {
-		if (intervalIdUni) {
-			clearInterval(intervalIdUni);
-			setIntervalIdUni(false);
-			setcounterUni(0);
-			return;
-		}
+		clearInterval(intervalIdUni);
+		setIntervalIdUni(false);
+		setcounterUni(0);
+		return;
 	};
 
 	const paAtras = () => {
@@ -77,7 +72,6 @@ const Counter = ({}) => {
 	};
 
 	const enviarAlerta = (numero) => {
-		alert("oko");
 		if (intervalTemp) {
 			clearInterval(intervalTemp);
 			setTemp(numero);
@@ -85,16 +79,15 @@ const Counter = ({}) => {
 		} else {
 			setTemp(numero);
 			const newIntervalITemp = setInterval(() => {
-				temporizar();
+				funciones.temporizador();
 			}, 1000);
 			setIntervalTemp(newIntervalITemp);
-			temporizar();
+			funciones.temporizador();
 		}
 	};
 
 	const enviarCuentaAtras = (numero) => {
 		intervalIdUni && clearInterval(intervalIdUni);
-		// intervalIdUni && setIntervalIdUni(numero);
 		setcounterUni(numero);
 		paAtras();
 	};
@@ -126,35 +119,24 @@ const Counter = ({}) => {
 				funcion={enviarCuentaAtras}
 				placehold={`Número para la cuenta atrás`}
 			/>
-			<CuentaAtras
+			{/* <CuentaAtras
 				funcion={enviarAlerta}
 				placehold={`Número para alerta`}
-			/>
+			/> */}
 			<div className="botone">
-				<button
-					className="b1"
-					onClick={startCount}
-					style={{ width: "100px", height: "100px" }}>
+				<button className="b1" onClick={startCount}>
 					Start
 				</button>
-				<button
-					className="b2"
-					onClick={stop}
-					style={{ width: "100px", height: "100px" }}>
+				<button className="b2" onClick={stop}>
 					Stop
 				</button>
-				<button
-					className="b3"
-					onClick={reset}
-					style={{ width: "100px", height: "100px" }}>
+				<button className="b3" onClick={reset}>
 					Reset
 				</button>
 			</div>
 			<div className="counter-container">
 				<div className="contenedor-numero">
 					<p>{mostarNumero()}</p>
-					<br></br>
-					<p>{temp}</p>
 				</div>
 			</div>
 		</>
