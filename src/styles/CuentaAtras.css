@@ -1,8 +1,6 @@
 .conteiner-cuenta-atras {
-    position: absolute;
-    top:25%;
     width: 20%;
-    height: 20%;
+    margin: 1.5%;
 }
 
 .row-cuenta-atras {
